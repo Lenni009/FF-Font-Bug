@@ -18,6 +18,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
   
   publish:
+    needs: show
+
     permissions:
       pages: write
       id-token: write
