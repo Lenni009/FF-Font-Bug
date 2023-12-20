@@ -35,6 +35,8 @@ jobs:
 
       - name: Build GH Pages Artifact
         uses: actions/upload-pages-artifact@v2
+        with:
+          path: './'
 
       - name: Publish to GH Pages
         uses: actions/deploy-pages@v2
