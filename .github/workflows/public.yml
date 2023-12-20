@@ -14,8 +14,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
   
-  build:
+  publish:
     needs: show
+
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
+    
+    environment:
+      name: github-pages
 
     runs-on: ubuntu-latest
 
@@ -30,23 +38,9 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Build GH Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: './'
 
-  deploy:
-    needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-      actions: read
-    
-    environment:
-      name: github-pages
-
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Publish to GH Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v3
