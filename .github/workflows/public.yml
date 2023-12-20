@@ -23,6 +23,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
+      actions: write
     
     environment:
       name: github-pages
@@ -33,10 +34,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Build GH Pages Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './'
 
       - name: Publish to GH Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3
