@@ -16,3 +16,23 @@ jobs:
         run: gh repo edit ${{ github.repository }} --visibility public
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  
+  publish:
+    permissions:
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build GH Pages Artifact
+        uses: actions/upload-pages-artifact@v2
+
+      - name: Publish to GH Pages
+        uses: actions/deploy-pages@v2
