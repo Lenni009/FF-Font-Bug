@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Checkout Repo'
-        uses: actions/checkout@v4
-
       # set to private at the beginning of February
       - name: 'Show Repo'
         run: gh repo edit ${{ github.repository }} --visibility public
@@ -23,7 +20,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
-      actions: write
+      actions: read
     
     environment:
       name: github-pages
@@ -46,4 +43,4 @@ jobs:
           path: './'
 
       - name: Publish to GH Pages
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
