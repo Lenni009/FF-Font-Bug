@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  - public
+
+jobs:
+  publish:
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
+    
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          enablement: true
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Build GH Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './'
+
+      - name: Publish to GH Pages
+        uses: actions/deploy-pages@v4
