@@ -13,3 +13,13 @@ jobs:
         run: gh repo edit ${{ github.repository }} --visibility public
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  
+  publish:
+    needs: show
+
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
+    
+    uses: ./.github/workflows/publish.yml
