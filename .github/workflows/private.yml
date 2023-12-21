@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Checkout Repo'
-        uses: actions/checkout@v4
-
       # set to private at the beginning of February
       - name: 'Hide Repo'
         run: gh repo edit ${{ github.repository }} --visibility private

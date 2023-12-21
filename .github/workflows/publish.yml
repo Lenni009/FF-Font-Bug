@@ -1,7 +1,6 @@
 name: Deploy
 
-on:
-  - workflow_call
+on: public
 
 jobs:
   publish:
